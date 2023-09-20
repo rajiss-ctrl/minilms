@@ -7,7 +7,8 @@ import { UserModel } from "../models/Users.js";
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-  const { username, password, firstname, lastname } = req.body;
+  const { username, password, firstname, lastname, isteacher, course } =
+    req.body;
   // Check if the user already exists in the database
   const existingUser = await UserModel.findOne({ username });
 
@@ -22,6 +23,8 @@ router.post("/register", async (req, res) => {
     password: hashPassword,
     firstname,
     lastname,
+    isteacher,
+    course,
   });
 
   try {
